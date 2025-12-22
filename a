@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!-- اعلام نوع سند: به مرورگر می‌گه این فایل HTML5 هست -->
+
+<html lang="fa">
+<!-- شروع صفحه HTML و تعیین زبان فارسی -->
+
+<head>
+  <!-- بخش تنظیمات صفحه (کاربر این بخش رو نمی‌بینه) -->
+
+  <meta charset="UTF-8">
+  <!-- تعیین کدبندی UTF-8 برای نمایش درست فارسی -->
+
+  <title>ورود / ثبت نام</title>
+  <!-- عنوان صفحه (نمایش در تب مرورگر) -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- باعث می‌شه سایت روی موبایل و کامپیوتر ریسپانسیو باشه -->
+
+  <style>
+    /* شروع استایل CSS */
+
+    body {
+      /* استایل کلی بدنه سایت */
+
+      margin: 0;
+      /* حذف فاصله پیش‌فرض مرورگر */
+
+      min-height: 100vh;
+      /* ارتفاع صفحه = کل ارتفاع صفحه نمایش */
+
+      display: flex;
+      /* فعال‌سازی فلکس برای وسط‌چین کردن */
+
+      align-items: center;
+      /* وسط‌چین عمودی */
+
+      justify-content: center;
+      /* وسط‌چین افقی */
+
+      background-image: url(/cba8c85a56cb0e7d550bc856898b0f7c.jpeg);
+      /* تصویر پس‌زمینه */
+
+      background-size: cover;
+      /* تصویر کل صفحه رو بپوشونه */
+
+      background-position: center;
+      /* تصویر وسط‌چین بشه */
+
+      font-family: Tahoma, sans-serif;
+      /* فونت مناسب فارسی */
+    }
+
+    .login-box {
+      /* استایل جعبه فرم */
+
+      width: 100%;
+      /* عرض کامل در موبایل */
+
+      max-width: 420px;
+      /* حداکثر عرض در کامپیوتر */
+
+      background: rgba(0, 0, 0, 0.85);
+      /* پس‌زمینه مشکی نیمه شفاف */
+
+      padding: 20px;
+      /* فاصله داخلی */
+
+      border-radius: 12px;
+      /* گرد شدن گوشه‌ها */
+
+      color: #00ff0d;
+      /* رنگ متن سبز */
+
+      box-shadow: 0 0 20px black;
+      /* سایه برای زیبایی */
+    }
+
+    .login-box h2 {
+      /* عنوان فرم */
+
+      text-align: center;
+      /* وسط‌چین */
+
+      margin-bottom: 20px;
+      /* فاصله پایین */
+    }
+
+    .login-box input {
+      /* استایل تمام ورودی‌ها */
+
+      width: 100%;
+      /* تمام عرض */
+
+      padding: 12px;
+      /* فاصله داخلی */
+
+      margin-top: 8px;
+      /* فاصله از بالا */
+
+      margin-bottom: 15px;
+      /* فاصله از پایین */
+
+      border: none;
+      /* حذف کادر */
+
+      border-radius: 8px;
+      /* گوشه‌های گرد */
+
+      font-size: 16px;
+      /* اندازه متن */
+    }
+
+    .login-box button {
+      /* استایل دکمه */
+
+      width: 100%;
+      /* تمام عرض */
+
+      padding: 12px;
+      /* فاصله داخلی */
+
+      font-size: 18px;
+      /* اندازه متن */
+
+      background: #00ff0d;
+      /* رنگ پس‌زمینه دکمه */
+
+      color: black;
+      /* رنگ متن */
+
+      border: none;
+      /* حذف کادر */
+
+      border-radius: 8px;
+      /* گرد شدن */
+
+      cursor: pointer;
+      /* تغییر شکل موس */
+    }
+
+    .login-box button:hover {
+      /* حالت موس روی دکمه */
+
+      background: #00cc0a;
+      /* تغییر رنگ */
+    }
+
+  </style>
+</head>
+
+<body>
+<!-- شروع بدنه سایت -->
+
+<script>
+  // بررسی اینکه آیا کاربر قبلاً لاگین کرده یا نه
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    // اگر لاگین کرده بود، مستقیم بره سایت اصلی
+    window.location.href = "https://abdorrezamovahedi.github.io/master-craft/";
+  }
+</script>
+
+<div class="login-box">
+  <!-- جعبه اصلی فرم -->
+
+  <h2>ورود / ثبت نام</h2>
+  <!-- عنوان فرم -->
+
+  <form id="loginForm">
+    <!-- فرم ورود با آی‌دی برای استفاده در جاوااسکریپت -->
+
+    نام کاربری:
+    <input type="text" name="username" required>
+    <!-- فیلد نام کاربری -->
+
+    شماره موبایل:
+    <input type="tel" name="phone" required>
+    <!-- فیلد شماره موبایل -->
+
+    ایمیل:
+    <input type="email" name="email" required>
+    <!-- فیلد ایمیل -->
+
+    رمز عبور:
+    <input type="password" name="password" required>
+    <!-- فیلد رمز عبور -->
+
+    <button type="submit">ورود</button>
+    <!-- دکمه ارسال فرم -->
+  </form>
+</div>
+
+<script>
+  // گرفتن فرم با آی‌دی
+  const form = document.getElementById("loginForm");
+
+  // گوش دادن به رویداد ارسال فرم
+  form.addEventListener("submit", function (e) {
+
+    // جلوگیری از رفرش صفحه
+    e.preventDefault();
+
+    // ساخت داده‌های فرم
+    const formData = new FormData(form);
+
+    // ارسال اطلاعات به Getform
+    fetch("https://getform.io/f/bejvrxja", {
+      method: "POST",
+      body: formData,
+    })
+
+    .then(() => {
+      // اگر ارسال موفق بود
+
+      // ذخیره وضعیت لاگین در مرورگر
+      localStorage.setItem("isLoggedIn", "true");
+
+      // انتقال کاربر به سایت اصلی
+      window.location.href =
+        "https://abdorrezamovahedi.github.io/master-craft/";
+    })
+
+    .catch(() => {
+      // اگر خطا داشت
+      alert("خطا در ارسال فرم");
+    });
+  });
+</script>
+
+</body>
+</html>
