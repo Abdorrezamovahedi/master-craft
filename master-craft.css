@@ -2,84 +2,16 @@ body{
     background-color:#000000;
 }
 
-#di pre{
-    background-color:#00FF00;
-    width: 100%;
-    font-size: 100%;
+h1{/*هشدار  اول سایت*/
+    color:#00FF37;
+    text-shadow:0 0 20px #00FF37;
+    width: 40%;
     text-align: center;
-    border-radius: 20px;
-    color:#000000;
-    
-}
-
-#di{
-    box-shadow: #00FF00 0 0 50px;
-    border-radius: 20px;
-    width: 90%;
     margin: 0 auto;
-    text-align: center;
 }
 
 
-ul{
-     color:#00FFFF;
-}
-
-a{
-    color:#FF0000;
-}
-
-table{
-    background-color:#252424;
-    color:#E5E7EB;
-    width: 80%;
-    font-size: xx-large;
-    font-size: 20px;
-    margin: 0 auto;
-
-
-
-
-    transition: all 0.5s ease-in-out;
-}   
-
-table:hover{
-    background-color:#00FF37;
-    color:#000000;
-    width: 90%;
-    box-shadow:0 0 20px #00FF37;
-}
-
-table img{
-        margin: 0 auto;
-        display: block;
-        width: 60%;
-        height: 60%;
-}
-
-table p{
-        text-align: center;
-
-}
-
-#v{
-    color:#0051FF;
-}
-
-#di2 pre {
-    font-family: "Vazirmatn", "IRANSans", "Tahoma", sans-serif;
-    font-size: 15px;
-    line-height: 2;
-    direction:initial;
-    text-align: right;
-    white-space: pre-wrap;
-    background:#0F2A13;
-    color:#E5E7EB;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-#p{
+#ویدیواول{ /*ویدیو معرفی سایت*/
 width: 80%;
 height: auto;
 max-width: 100%;
@@ -89,7 +21,7 @@ box-shadow: #00FF00 0 0 50px;
 
 }
 
-#w{        
+#پروفایل{    /*پروفایل کانال اپارات*/  
     border-radius: 100%;
     width: 30%;
     height: 30%;
@@ -97,15 +29,25 @@ box-shadow: #00FF00 0 0 50px;
     display: block;
 }
 
-h1{
-    color:#00FF37;
-    text-shadow:0 0 20px #00FF37;
-    width: 40%;
-    text-align: center;
+#di{/*متن خوشامد گویی به کاربر*/
+    box-shadow: #00FF00 0 0 50px;
+    border-radius: 20px;
+    width: 90%;
     margin: 0 auto;
+    text-align: center;
 }
 
-#di5{ /* توضیحات کلی */
+#di pre{
+    background-color:#00FF00;
+    width: 100%;
+    font-size: 100%;
+    text-align: center;
+    border-radius: 20px;
+    color:#000000;
+    
+}/*پایان متن خوش امد گویی به کاربر*/
+
+#di2{ /* توضیحات کلی */
     color: #FF0000;
     font-size: 200%;
     text-align: center;
@@ -132,7 +74,77 @@ h1{
     0 0 10px #0051FF,
     0 0 20px #0051FF,
     0 0 40px #0051FF;
+}/*پایان توضیحات کلی*/
+
+#text{ /*متن بالای جدول ویدیو ها*/
+  font-family: "Vazirmatn", "IRANSans", "Tahoma", sans-serif;
+  font-size: 15px;
+  line-height: 2;
+  direction:initial;
+  color:#FF0000;                 /* رنگ متن */
+  text-shadow: 0 0 20px #FF0000;   /* سایه نئونی */
+  width: 100%;
+  text-align: center;
+  background-color: #0F2A13;
+  padding: 10px;
+  font-size: larger;
 }
+
+
+
+#table1{/*جدول ویدیو ها*/
+    background-color:#252424;
+    color:#E5E7EB;
+    width: 80%;
+    font-size: xx-large;
+    font-size: 20px;
+    margin: 0 auto;
+
+
+
+
+    transition: all 0.5s ease-in-out;
+}   
+
+#table1:hover{
+    background-color:#00FF37;
+    color:#000000;
+    width: 90%;
+    box-shadow:0 0 20px #00FF37;
+}
+
+#table1 img{
+        margin: 0 auto;
+        display: block;
+        width: 60%;
+        height: 60%;
+}
+
+#table1 p{
+        text-align: center;
+
+}
+
+#v{ /* لینک داخل تیبل */
+    color:#0051FF;
+}/*پایان جدول ویدیو ها*/
+
+#di3 pre {/* متن پایانی*/
+    font-family: "Vazirmatn", "IRANSans", "Tahoma", sans-serif;
+    font-size: 15px;
+    line-height: 2;
+    direction:initial;
+    text-align: right;
+    white-space: pre-wrap;
+    background:#0F2A13;
+    color:#E5E7EB;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+
+
+
 
 
 
