@@ -1,0 +1,31 @@
+
+        html {
+            color-scheme: light dark;
+        }
+
+        * {
+            forced-color-adjust: none;
+        }
+
+        body{
+            background-color:#000000;
+        }
+        img{
+            width: 80%;
+        }
+        table{
+            text-align: center;
+            width: 80%;
+            margin: 0 auto;
+            background-color: #000000;
+            color: #eeff00;
+            text-shadow:0 0 20px #00FFFF;
+            font-family: 'Lalezar', cursive;
+        }
+        table a{
+            color: #00FFFF;
+            text-shadow:0 0 20px #00FFFF;
+            
+        }
+
+
