@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>ورود / ثبت نام</title>
+
+  <link rel="icon" href="e.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/login/login-mobile.css">
+</head>
+
+<body>
+
+<script>
+/* 🔐 پاک کردن وضعیت لاگین کاربران قبلی برای مجبور کردن دوباره لاگین */
+localStorage.removeItem("isLoggedIn");  // همه کاربران باید دوباره لاگین کنند
+localStorage.setItem("resetVersion", "2"); // شماره نسخه جدید (اختیاری)
+</script>
+
+<div class="login-box">
+  <h2>ورود / ثبت نام</h2>
+
+  <form id="loginForm">
+    <label>نام کاربری</label>
+    <input type="text" name="username" required>
+
+    <label>شماره موبایل</label>
+    <input type="tel" name="phone" placeholder="09xxxxxxxxx" inputmode="numeric" required>
+
+    <label>ایمیل</label>
+    <input type="email" name="email" required>
+
+    <label>رمز عبور</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">ورود</button>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById("loginForm");
+
+/* تبدیل اعداد فارسی به انگلیسی */
+function toEnglishDigits(str) {
+  return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let phone = toEnglishDigits(form.phone.value.trim());
+
+  if (!/^09\d{9}$/.test(phone)) {
+    alert("شماره موبایل معتبر نیست\nمثال: 09123456789");
+    return;
+  }
+
+  form.phone.value = phone;
+
+  const formData = new FormData(form);
+
+  fetch("https://getform.io/f/amdjyqwb", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
+    localStorage.setItem("isLoggedIn", "true");
+    location.replace("index.html"); // مسیر درست index
+  })
+  .catch(() => {
+    alert("خطا در ارسال اطلاعات");
+  });
+});
+</script>
+
+</body>
+</html>
