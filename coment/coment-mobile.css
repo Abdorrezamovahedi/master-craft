@@ -1,0 +1,108 @@
+/* ===== فقط برای موبایل ===== */
+body {
+  font-family: 'Lalezar', sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color: #fff;
+  padding:15px;
+  margin:0;
+  display:none; /* مخفی پیش فرض */
+}
+
+/* ===== عنوان ===== */
+h1 {
+  text-align:center;
+  color:#00ff99;
+  font-size: 32px;
+  text-shadow: 0 0 15px #00ff99, 0 0 30px #00cc66;
+  margin-bottom: 20px;
+}
+
+/* ===== فرم موبایل ===== */
+form {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width: 400px;
+  margin:0 auto 20px auto;
+  padding:15px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00ff99 inset, 0 0 20px #00cc66;
+  transition: transform 0.2s ease;
+}
+
+form:hover { transform: scale(1.01); }
+
+input, textarea {
+  margin:8px 0;
+  padding:12px;
+  border-radius: 10px;
+  border:none;
+  font-size:14px;
+  background:#222;
+  color:#fff;
+  box-shadow: 0 0 10px #00ff99 inset;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  outline:none;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+button {
+  padding:12px;
+  background: linear-gradient(90deg,#00ff99,#00cc66);
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+  color:#000;
+  font-weight:bold;
+  margin-top:8px;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ff99;
+}
+
+/* ===== کامنت‌ها ===== */
+#comments {
+  width:100%;
+  max-width:400px;
+  margin:0 auto;
+}
+
+.comment {
+  padding:10px;
+  border:1px solid #00ff99;
+  border-radius:10px;
+  background: linear-gradient(145deg, #111, #222);
+  margin-bottom:10px;
+  box-shadow: 0 0 10px #00ff99 inset;
+  opacity:0;
+  transform: translateY(15px);
+  transition: all 0.4s ease;
+}
+
+.comment.show {
+  opacity:1;
+  transform: translateY(0);
+}
+
+.comment b { color:#00ff99; font-size:14px; }
+.comment small {
+  display:block;
+  color:#aaa;
+  font-size:11px;
+  margin-top:4px;
+  text-align:left;
+}
+
+/* ===== scrollbar موبایل ===== */
+#comments::-webkit-scrollbar { width: 8px; }
+#comments::-webkit-scrollbar-track { background: #111; }
+#comments::-webkit-scrollbar-thumb { background: #00ff99; border-radius: 6px; }
+#comments::-webkit-scrollbar-thumb:hover { background: #00cc66; }
