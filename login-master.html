@@ -4,31 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود / ثبت نام</title>
+
   <link rel="icon" href="e.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="login-master.css">
-
+  <link rel="stylesheet" href="/login/login-master.css">
 </head>
+
 <body>
 
-<!-- 🔥 ریست یک‌باره کاربران قدیمی -->
 <script>
-  const RESET_VERSION = "1"; // فقط در صورت نیاز تغییر بده
+/* 🔐 پاک کردن وضعیت لاگین کاربران قبلی برای مجبور کردن دوباره لاگین */
+localStorage.removeItem("isLoggedIn");  // همه کاربران باید دوباره لاگین کنند
+localStorage.setItem("resetVersion", "2"); // شماره نسخه جدید (اختیاری)
 
-  const lastReset = localStorage.getItem("resetVersion");
-
-  // اگر ریست قبلاً انجام نشده → پاک‌سازی کامل
-  if (lastReset !== RESET_VERSION) {
-    localStorage.clear();
-    localStorage.setItem("resetVersion", RESET_VERSION);
-  }
-
-  // اگر کاربر بعد از ریست لاگین کرده باشد
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    window.location.href = "index.html";
-  }
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  window.location.replace("login-mobile.html");
+}
 </script>
 
 <div class="login-box">
@@ -39,13 +32,7 @@
     <input type="text" name="username" required>
 
     <label>شماره موبایل</label>
-    <input
-      type="tel"
-      name="phone"
-      placeholder="09xxxxxxxxx"
-      inputmode="numeric"
-      required
-    >
+    <input type="tel" name="phone" placeholder="09xxxxxxxxx" inputmode="numeric" required>
 
     <label>ایمیل</label>
     <input type="email" name="email" required>
@@ -58,37 +45,40 @@
 </div>
 
 <script>
-  const form = document.getElementById("loginForm");
+const form = document.getElementById("loginForm");
 
-  function toEnglishDigits(str) {
-    return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+/* تبدیل اعداد فارسی به انگلیسی */
+function toEnglishDigits(str) {
+  return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+}
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let phone = toEnglishDigits(form.phone.value.trim());
+
+  if (!/^09\d{9}$/.test(phone)) {
+    alert("شماره موبایل معتبر نیست\nمثال: 09123456789");
+    return;
   }
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  form.phone.value = phone;
 
-    let phone = form.phone.value.trim();
-    phone = toEnglishDigits(phone);
+  const formData = new FormData(form);
 
-    if (!/^09\d{9}$/.test(phone)) {
-      alert("شماره موبایل معتبر نیست\nمثال: 09123456789");
-      return;
-    }
-
-    form.phone.value = phone;
-
-    const formData = new FormData(form);
-
-    fetch("https://getform.io/f/amdjyqwb", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      localStorage.setItem("isLoggedIn", "true");
-      window.location.href = "https://abdorrezamovahedi.github.io/master-craft/";
-    })
-    .catch(() => alert("خطا در ارسال اطلاعات"));
+  fetch("https://getform.io/f/amdjyqwb", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
+    localStorage.setItem("isLoggedIn", "true");
+    location.replace("index.html"); // مسیر درست index
+  })
+  .catch(() => {
+    alert("خطا در ارسال اطلاعات");
   });
+});
 </script>
 
 </body>
