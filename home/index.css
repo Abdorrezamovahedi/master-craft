@@ -1,0 +1,101 @@
+
+        body{
+            font-family:'Lalezar', cursive;
+            background-color: rgb(255, 255, 255);
+            background-color: black;
+        }
+
+        .a{
+            color: #00ff00;
+            transition: all 0.3s ease-in-out;
+            background-color: rgb(0, 24, 1);
+            font-size: 40px;
+            width: fit-content;
+            border-radius: 40px;
+            text-decoration: none;
+        }
+
+        .a:hover{
+            box-shadow: 
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36);
+            font-size: 50px;
+            border: 2px solid rgb(0, 255, 13);
+            background-color: #003b00;
+            text-shadow:
+            -10px -10px 3px black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+
+
+        }
+
+        #texthead{
+            color: aqua;
+            text-align:center;
+            background-color: rgb(11, 22, 10);
+            border-radius: 20px;
+            max-width: 700px;
+            border: 2px solid rgb(0, 255, 21);
+            text-shadow: 0 0 10px rgb(0, 225, 255);
+            text-shadow:
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+
+        }
+
+        #menu{
+            width:fit-content;
+        }
+
+        /* ===== فقط چیدمان دسکتاپ ===== */
+        .layout{
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            padding: 20px;
+        }
+        /* ============================ */
+
+        #payan{
+            background-color: #00ff00;
+            width:fit-content ;
+            text-align: center;
+            justify-content: center;  /* وسط افقی */
+            align-items: center;      /* وسط عمودی */          /* تمام ارتفاع صفحه */
+            border-radius:30px ;
+            text-align: center;       /* متن داخل div هم وسط */
+            box-shadow:
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00;
+        }
