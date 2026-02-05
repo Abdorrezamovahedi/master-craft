@@ -1,0 +1,45 @@
+body{
+    font-family:'Lalezar', cursive;
+    background-color: rgb(255, 255, 255);
+    background-color: black;
+}
+.menu-btn{
+    color: aqua;
+    font-size: 300%;
+}
+/* .menu{
+} */
+.a{
+    color: rgb(0, 255, 0);
+    background-color: rgb(16, 49, 0);
+    width:fit-content ;
+    border-radius: 50px;
+    box-shadow:
+     0 0 10px green,
+     0 0 10px green,
+     0 0 10px green,
+     0 0 10px green,
+     0 0 10px green;
+}
+#texthead{
+    color: rgb(150, 0, 150);
+    text-align: center;
+    background-color: rgb(49, 49, 49);
+    border-radius: 20px;
+
+    max-width: 700px;
+    margin: auto;
+    border: 5px solid rgb(82, 82, 82);
+    box-shadow:
+    0 0 10px grey,
+    0 0 10px grey,
+    0 0 10px grey,
+    0 0 10px grey;
+    text-align: end;
+    border-bottom-left-radius:100px ;
+    text-shadow:
+    0 0 10px rgb(121, 0, 0),
+    0 0 10px rgb(30, 0, 139),
+    0 0 10px rgb(87, 0, 0),
+    0 0 10px rgb(2, 44, 6);
+}
