@@ -1,8 +1,10 @@
+/* ===== پایه ===== */
 body{
     font-family: 'Lalezar', cursive;
     background-color: black;
     margin:0;
     padding:0;
+    color: #00ff00;
 }
 
 /* لینک‌ها */
@@ -48,33 +50,74 @@ img{
 /* ===== منوی موبایل سه خط ===== */
 .mobile-nav{
     position: relative;
+    z-index: 1000;
 }
 
 .hamburger{
     width: 40px;
     margin: 15px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
 }
 
 .hamburger span{
     display: block;
     height: 4px;
     background: red;
-    margin: 6px 0;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
+/* ===== انیمیشن تبدیل همبرگر به ضربدر ===== */
+.hamburger.active span:nth-child(1){
+    transform: rotate(45deg) translate(7px, 7px);
+}
+.hamburger.active span:nth-child(2){
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3){
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* منوی لینک‌ها */
 .menu-links{
     display: none;
     text-align: center;
+    flex-direction: column;
+    background: black;
+    padding: 10px 0;
+    border-radius: 20px;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.menu-links.active{
+    display: flex;
+    animation: slideDown 0.3s ease-in-out;
 }
 
 .menu-links a{
     display: block;
     margin: 10px auto;
+    font-size: 24px;
+    text-decoration: none;
+    color: #00ff00;
 }
 
-/* ===== موبایل فرست ===== */
+/* انیمیشن */
+@keyframes slideDown{
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===== موبایل فرندلی ===== */
 @media (max-width: 768px){
 
     .a, .a2{
@@ -95,11 +138,5 @@ img{
         display: block;
         width: 100%;
         text-align: center;
-    }
-
-    .menu-links{
-        background: black;
-        padding: 10px 0;
-        border-radius: 20px;
     }
 }
