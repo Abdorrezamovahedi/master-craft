@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'M';
+    src: url('../fonts/Pk.ttf') format('truetype');
+}
+
 body{
-    font-family: 'Lalezar', cursive;
+    font-family: 'M', sans-serif;
     background-color: #000000;
     margin: 0;
     padding: 0;
@@ -33,7 +38,7 @@ body{
     background-color: #000000;
     padding: 10px 20px;
     border-radius: 20px;
-    background-image: url(/yadack/bghack.png);
+    background-image: url(../yadack/bghack.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 40%;
