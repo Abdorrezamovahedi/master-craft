@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'M';
+    src: url('../fonts/Pk.ttf') format('truetype');
+}
+
 body{
-    font-family: 'Lalezar', cursive;
+    font-family: 'M', sans-serif;
     background-color: #000000;
 }
 .a{
@@ -40,7 +45,7 @@ body{
     box-shadow:
     0 0 1px rgba(0, 255, 0, 0.6),
     0 0 10px rgba(0, 255, 0, 0.4);
-    background-image: url(/yadack/bghack.png);
+    background-image: url(../yadack/bghack.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 40%;
