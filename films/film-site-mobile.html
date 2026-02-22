@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta name="color-scheme" content="only light">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+<link rel="stylesheet" href="film-site-mobile.css">
+<title>ABDORREZA MASTER CRAFT 12</title>
+
+</head>
+
+<body>
+
+<!-- منوی سه خط موبایل -->
+<div class="mobile-nav">
+    <div class="hamburger" onclick="toggleMenu(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu-links" id="menuLinks">
+        <a class="a" href="../index.html">🏠 خانه</a>
+        <a class="a" href="../master-code/code-master.html">💻 مستر کد</a>
+            <a href="../mt/mt.html" class="a">🎈محل تبلیغات</a>
+    </div>
+</div>
+
+<div>
+    <img class="img" src="img3.jpg">
+    <br>
+    <p class="text">MASTER CODE</p>
+    <a href="https://aparat.com/v/zngavp5">
+        <p class="a2">تماشا</p>
+    </a>
+</div>
+<br>
+<hr>
+<br>
+<div>
+    <img class="img" src="img5.jpg">
+    <br>
+    <p class="text">2MASTER CODE</p>
+    <a href="https://rubika.ir/joinc/ECHDIEJG0RRUCFFIRWWHTTSBFUYFHBGZ">
+        <p class="a2">تماشا</p>
+    </a>
+</div>
+
+<script>
+function toggleMenu(el) {
+    const menu = document.getElementById("menuLinks");
+    menu.classList.toggle("active");
+    el.classList.toggle("active"); // برای انیمیشن همبرگر
+}
+</script>
+
+</body>
+</html>
