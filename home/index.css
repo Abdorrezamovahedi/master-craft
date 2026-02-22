@@ -1,6 +1,11 @@
+@font-face {
+    font-family: 'M';
+    src: url('../fonts/Pk.ttf') format('truetype');
+}
+
 
         body{
-            font-family:'Lalezar', cursive;
+            font-family: 'M', sans-serif;
             background-color: rgb(255, 255, 255);
             background-color: black;
         }
