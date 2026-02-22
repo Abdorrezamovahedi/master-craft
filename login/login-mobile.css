@@ -1,7 +1,12 @@
+@font-face {
+    font-family: 'M';
+    src: url('../fonts/Pk.ttf') format('truetype');
+}
+
 /* موبایل فرست */
 * {
   box-sizing: border-box;
-  font-family:'Lalezar', cursive;
+  font-family: 'M', sans-serif;
   margin:0;
   padding:0;
 }
