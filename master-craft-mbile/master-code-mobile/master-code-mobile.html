@@ -4,29 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
-
 <link rel="stylesheet" href="master-code-mobile.css">
 <title>ABDORREZA MASTER CRAFT 12</title>
-
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.menu-toggle');
+    menu.classList.toggle('show');
+    toggle.classList.toggle('open');
+}
+</script>
 </head>
-
 <body>
-
-<!-- منوی سه خط موبایل -->
-<div class="mobile-nav">
-    <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <div class="menu-links" id="menuLinks">
-        <a class="a" href="../home-mobile/index-mobile.html">🏠 خانه</a>
-        <a class="a" href="../films-mobile/film-site-mobile.html">🎞فیلم سینمایی</a>
-            <a href="../mt-mobile/mt-mobile.html" class="a">🎈محل تبلیغات</a>
-    </div>
+<div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
 
+<div class="menu" id="menu">
+    <a class="a" href="../home-mobile/index-mobile.html">🏠 خانه</a>
+    <a class="a" href="../films-mobile/film-site-mobile.html">🎞فیلم سینمایی</a>
+    <a href="../mt-mobile/mt-mobile.html" class="a">🎈محل تبلیغات</a>
+
+    <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
+
+
+</div>
 <div dir="ltr" class="h1">
 <h1>
 <strong>
@@ -49,12 +53,8 @@
 
 <br><br><br>
 
-<script>
-function toggleMenu(){
-    var menu = document.getElementById("menuLinks");
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-}
-</script>
-
 </body>
 </html>
+
+
+

@@ -1,7 +1,14 @@
 ﻿@font-face {
-    font-family: 'M';
-    src: url('../../fonts/Pk.ttf') format('truetype');
+  font-family: 'M';
+  src: url('../../fonts/Pk.ttf') format('truetype');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
+@font-face {
+  font-family: 'M';
+  src: url('../../fonts/en.otf') format('truetype');
+  unicode-range: U+0000-00FF;
+}
+
 
 body{
     font-family: 'M', sans-serif;
@@ -122,3 +129,340 @@ body{
         border-radius: 20px;
     }
 }
+/* ===== همبرگری یکسان با mt-mobile ===== */
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: rgb(0, 255, 21);
+    margin: 6px 0;
+    border-radius: 5px;
+    transition: 0.4s;
+    box-shadow: 0 0 8px rgb(0, 73, 12);
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    transition: 0.5s;
+    box-shadow: -5px 0 20px rgba(0, 255, 21, 0.2);
+    z-index: 999;
+}
+
+.menu.show {
+    right: 0;
+}
+
+.menu a {
+    color: rgb(0, 255, 21);
+    text-decoration: none;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 50px;
+    background: #111;
+    text-align: center;
+    font-family: 'M', sans-serif;
+    transition: 0.3s;
+    font-size: 20px;
+}
+
+.menu a:active {
+    background: rgb(6, 53, 0);
+    box-shadow: 0 0 15px rgb(0, 73, 12);
+}
+
+/* فاصله متن از دکمه سه خط */
+body {
+    padding-top: 70px;
+}
+
+/* ===== ULTRA MENU FX START ===== */
+.menu-toggle {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 34px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1200;
+    isolation: isolate;
+    filter: drop-shadow(0 0 9px rgba(0, 255, 128, 0.35));
+    animation: toggleFloat 2.8s ease-in-out infinite;
+}
+
+.menu-toggle::before {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    border-radius: 16px;
+    background: radial-gradient(circle, rgba(0, 255, 128, 0.32), rgba(0, 255, 128, 0));
+    opacity: 0.38;
+    z-index: -1;
+    pointer-events: none;
+    animation: togglePulse 1.8s ease-in-out infinite;
+}
+
+.menu-toggle.open {
+    animation: none;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #00ff7a, #30ffcf);
+    box-shadow: 0 0 10px rgba(0, 255, 145, 0.55);
+    transform-origin: right center;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, filter 0.35s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 8px) scaleX(1.05);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(12px);
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -8px) scaleX(1.05);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: -105%;
+    width: min(78vw, 340px);
+    height: 100dvh;
+    overflow-y: auto;
+    background: linear-gradient(160deg, #070707 0%, #0f1d13 45%, #050505 100%);
+    border-left: 1px solid rgba(0, 255, 153, 0.24);
+    box-shadow: -20px 0 55px rgba(0, 0, 0, 0.65), -3px 0 24px rgba(0, 255, 145, 0.22);
+    backdrop-filter: blur(10px) saturate(120%);
+    padding: 92px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1100;
+    transform-origin: right center;
+    transform: perspective(900px) rotateY(-10deg) scale(0.96);
+    opacity: 0;
+    visibility: hidden;
+    transition: right 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.55s;
+}
+
+.menu::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -120%;
+    width: 70%;
+    height: 150%;
+    transform: rotate(22deg);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(0, 255, 153, 0.2), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.menu.show {
+    right: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(900px) rotateY(0deg) scale(1);
+    transition: right 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+}
+
+.menu.show::after {
+    animation: menuSheen 1s ease-out 1;
+}
+
+.menu a {
+    display: block;
+    margin: 10px;
+    padding: 13px 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 255, 130, 0.22);
+    background: linear-gradient(160deg, rgba(20, 20, 20, 0.92), rgba(6, 55, 26, 0.8));
+    box-shadow: inset 0 0 0 1px rgba(130, 255, 205, 0.06), 0 8px 20px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateX(28px) scale(0.93) rotate(-1deg);
+    filter: blur(2px);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.menu.show a {
+    animation: menuLinkIn 0.58s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.menu.show a:nth-child(1) { animation-delay: 0.05s; }
+.menu.show a:nth-child(2) { animation-delay: 0.1s; }
+.menu.show a:nth-child(3) { animation-delay: 0.15s; }
+.menu.show a:nth-child(4) { animation-delay: 0.2s; }
+.menu.show a:nth-child(5) { animation-delay: 0.25s; }
+.menu.show a:nth-child(6) { animation-delay: 0.3s; }
+
+.menu a:hover,
+.menu a:focus-visible {
+    border-color: rgba(0, 255, 170, 0.55);
+    background: linear-gradient(160deg, rgba(28, 28, 28, 0.98), rgba(8, 88, 41, 0.95));
+    box-shadow: 0 0 0 1px rgba(0, 255, 153, 0.35), 0 10px 24px rgba(0, 255, 128, 0.2);
+    transform: translateX(-4px) scale(1.01);
+}
+
+.menu a:active {
+    transform: scale(0.97);
+}
+
+@keyframes toggleFloat {
+    0%,
+    100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes togglePulse {
+    0%,
+    100% { opacity: 0.25; transform: scale(0.95); }
+    50% { opacity: 0.55; transform: scale(1.08); }
+}
+
+@keyframes menuLinkIn {
+    0% {
+        opacity: 0;
+        transform: translateX(28px) scale(0.92) rotate(-1deg);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes menuSheen {
+    0% { left: -120%; }
+    100% { left: 145%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-toggle,
+    .menu-toggle::before,
+    .menu,
+    .menu a {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+/* ===== ULTRA MENU FX END ===== */
+
+
+/* === hamburger visibility fix === */
+.menu-toggle {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: fixed !important;
+    top: 14px !important;
+    right: 14px !important;
+    width: 40px !important;
+    height: 32px !important;
+    z-index: 2000 !important;
+    cursor: pointer !important;
+}
+
+.menu-toggle span {
+    display: block !important;
+    width: 100% !important;
+    height: 4px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-radius: 999px !important;
+    background: #00ff66 !important;
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.6) !important;
+}
+
+/* === hamburger clarity hard-fix === */
+.menu-toggle {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: fixed !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 44px !important;
+    height: 36px !important;
+    padding: 7px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    background: rgba(0, 0, 0, 0.92) !important;
+    border: 2px solid #00ff66 !important;
+    z-index: 99999 !important;
+    cursor: pointer !important;
+}
+
+.menu-toggle::before {
+    content: none !important;
+}
+
+.menu-toggle span {
+    display: block !important;
+    width: 100% !important;
+    height: 3px !important;
+    margin: 0 !important;
+    border-radius: 999px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* === menu option no-zoom fix === */
+.menu a,
+.menu a:hover,
+.menu a:focus,
+.menu a:focus-visible,
+.menu a:active,
+.menu .a,
+.menu .a:hover,
+.menu .a:focus,
+.menu .a:focus-visible,
+.menu .a:active {
+    transform: none !important;
+    font-size: 20px !important;
+    scale: 1 !important;
+}
+
+
+

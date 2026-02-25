@@ -1,45 +1,39 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
     <meta name="color-scheme" content="only light">
-    <link rel="stylesheet" href="index-mobile.css"> 
+    <link rel="stylesheet" href="index-mobile.css">
     <link rel="icon" href="../../yadack/head.png">
     <title>MASTERCRAFT12</title>
     <script>
-function toggleMenu(){
-  const menu = document.getElementById("menu");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.menu-toggle');
+    menu.classList.toggle('show');
+    toggle.classList.toggle('open');
 }
-// بستن منو با کلیک بیرون
-document.addEventListener("click", function(e){
-  const menu = document.getElementById("menu");
-  const btn = document.querySelector(".menu-btn");
-  if(!menu.contains(e.target) && !btn.contains(e.target)){
-    menu.style.display = "none";
-  }
-});
 </script>
-
 </head>
 <body>
-<header>
-  <div class="menu-btn" onclick="toggleMenu()">≡</div>
-</header>
+<div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
 <div class="menu" id="menu">
-  <a  class="a" id="aparat" href="../aparat-mobile/aparat-mobile.html">🍏آپارات</a>
-  <br>
-  <!-- <a class="a" href="#" target="_blank">🏠 خانه</a> -->
+  <a class="a" id="aparat" href="../aparat-mobile/aparat-mobile.html">🍏آپارات</a>
   <a class="a" href="../films-mobile/film-site-mobile.html">🎬 فیلم سینمایی</a>
-  <br>
   <a class="a" id="code-master" href="../master-code-mobile/master-code-mobile.html">💻 مستر کد</a>
-  <br>
-      <a href="../mt-mobile/mt-mobile.html" class="a">🎈محل تبلیغات</a>
-  </div>
-  <br>
+  <a href="../mt-mobile/mt-mobile.html" class="a">🎈محل تبلیغات</a>
+
+    <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
+
+
+</div>
 <div id="texthead">
     <p>
         <h1>
@@ -52,13 +46,13 @@ document.addEventListener("click", function(e){
                 <br>
                 سه خط بالا کیلیک کنی
                 <br>
-                و اون گزینه ای که دلت می خواد رو انتخاب کنی 
+                و اون گزینه ای که دلت می خواد رو انتخاب کنی
             </strong>
         </h1>
     </p>
 </div>
-    
-
-
 </body>
 </html>
+
+
+

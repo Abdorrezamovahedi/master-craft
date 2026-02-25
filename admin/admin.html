@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <title>پنل مدیریت | Master Craft</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="page-wrap">
+    <header class="topbar">
+      <a class="brand has-tip" data-tip="بازگشت به صفحه اصلی سایت" href="../index.html"><span class="en">MASTER CRAFT 12</span></a>
+      <div class="top-actions">
+        <a class="btn ghost has-tip" data-tip="خروج از مدیریت و رفتن به سایت" href="../index.html">بازگشت به سایت</a>
+        <a class="btn ghost has-tip" data-tip="رفتن به پنل کاربر فعلی" href="../panel/panel.html">پنل کاربری</a>
+      </div>
+    </header>
+
+    <main id="adminPanel" class="hidden">
+      <section class="card hero">
+        <h1>پنل مدیریت سایت</h1>
+        <p class="muted">همه تنظیمات این پنل داخل مرورگر فعلی ذخیره می شود.</p>
+        <div class="stats">
+          <div class="stat"><span>تعداد کاربران</span><strong id="totalUsers">0</strong></div>
+          <div class="stat"><span>کاربران امروز</span><strong id="todayUsers">0</strong></div>
+          <div class="stat"><span>آخرین ورود</span><strong id="lastLogin">-</strong></div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>تنظیمات سایت</h2>
+          <label for="announcement">متن اعلان</label>
+          <textarea id="announcement" rows="4" placeholder="پیام مدیریت را بنویس..."></textarea>
+          <label for="supportLink">لینک پشتیبانی</label>
+          <input id="supportLink" type="url" placeholder="https://...">
+          <label class="inline">
+            <input id="maintenanceMode" type="checkbox">
+            حالت تعمیرات فعال شود
+          </label>
+          <button id="saveSettings" class="btn has-tip" data-tip="اعلان، لینک پشتیبانی و حالت تعمیرات را ذخیره می‌کند">ذخیره تنظیمات</button>
+        </article>
+
+        <article class="card">
+          <h2>مدیریت کاربران</h2>
+          <input id="userSearch" type="text" placeholder="جستجو با نام یا شماره...">
+          <div id="usersList" class="users-list"></div>
+          <div class="row-actions">
+            <button id="deleteAllUsers" class="btn danger has-tip" data-tip="تمام کاربران ذخیره‌شده در این مرورگر حذف می‌شوند">حذف همه کاربران</button>
+            <button id="clearProfilesOnly" class="btn ghost has-tip" data-tip="فقط اطلاعات پروفایل کاربر جاری پاک می‌شود">پاک کردن پروفایل جاری</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>پشتیبان گیری</h2>
+          <button id="exportData" class="btn has-tip" data-tip="از داده‌های مدیریت فایل پشتیبان می‌سازد">خروجی <span class="en">JSON</span></button>
+          <label for="importFile" class="btn ghost has-tip" data-tip="تنظیمات و کاربران را از فایل پشتیبان برمی‌گرداند">بازیابی از فایل <span class="en">JSON</span></label>
+          <input id="importFile" type="file" accept="application/json">
+          <button id="resetAllData" class="btn danger has-tip" data-tip="همه داده‌های پنل مدیریت را پاک می‌کند">ریست کامل داده ها</button>
+        </article>
+
+        <article class="card">
+          <h2>تنظیمات مدیریت</h2>
+          <label for="newAdminPass">تغییر رمز مدیریت</label>
+          <input id="newAdminPass" type="password" placeholder="رمز جدید">
+          <button id="changeAdminPass" class="btn has-tip" data-tip="رمز ورود مدیریت را تغییر می‌دهد">ثبت رمز جدید</button>
+          <button id="adminLogout" class="btn ghost has-tip" data-tip="خروج از پنل مدیریت">خروج از پنل مدیریت</button>
+        </article>
+
+        <article class="card">
+          <h2>پیش نمایش</h2>
+          <p id="previewAnnouncement" class="preview">اعلان ثبت نشده است.</p>
+          <a id="previewSupportLink" class="btn support has-tip" data-tip="لینک پشتیبانی ذخیره‌شده را باز می‌کند" href="#" target="_blank" rel="noopener noreferrer">تماس با پشتیبانی</a>
+          <p id="maintenanceBadge" class="badge off">وضعیت: فعال</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="loginOverlay" class="overlay">
+    <div class="login-box">
+      <h2>ورود مدیریت</h2>
+      <label for="adminPass">رمز مدیریت</label>
+      <input id="adminPass" type="password" placeholder="رمز مدیریت را وارد کنید">
+      <button id="adminLogin" class="btn has-tip" data-tip="ورود به بخش مدیریت با رمز معتبر">ورود</button>
+      <p class="muted small">رمز مدیریت خصوصی است.</p>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

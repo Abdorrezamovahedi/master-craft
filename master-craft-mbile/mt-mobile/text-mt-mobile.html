@@ -1,27 +1,50 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
     <meta name="color-scheme" content="light dark">
     <title>مخاطبان تبلیغات</title>
-       <link rel="stylesheet" href="text-mt-mobile.css">
-
+    <link rel="stylesheet" href="text-mt-mobile.css">
+    <script>
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.menu-toggle');
+    menu.classList.toggle('show');
+    toggle.classList.toggle('open');
+}
+</script>
 </head>
-
 <body>
-    <div dir="rtl" class="h1">
-        <h1>
-            <p><i>در این بخش ما فقط مخاطبانی <br><br>که برای تبلیغ 72 ساعته ثبت نام کرده اند <br><br>را قرار دادیم برای
-                    اینکه شما هم <br><br>در این بخش ثبت نام بشی بیا به <a
-                        href="https://rubika.ir/joing/IJFDFDEH0KVTAMRDAABTQHUPYCCMEJIR" target="_blank">گروه
-                        روبیکا</a>یادتون باشه که فقط 4 نفر می توانند شرکت کنند <br><br>و وقتی وقت آن 4 نفر تمام شد سپس
-                    کاربران دیگری جایگزین میشوند </i></p>
-        </h1>
-    </div>
-</body>
+<div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
+<div class="menu" id="menu">
+    <a class="a" href="../home-mobile/index-mobile.html">🏠 خانه</a>
+    <a class="a" href="../aparat-mobile/aparat-mobile.html">🍏 آپارات</a>
+    <a class="a" href="../films-mobile/film-site-mobile.html">🎞 فیلم سینمایی</a>
+    <a class="a" href="../master-code-mobile/master-code-mobile.html">💻 مستر کد</a>
+    <a class="a" href="mt-mobile.html">🎈محل تبلیغات</a>
+
+    <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
+
+
+</div>
+<div dir="rtl" class="h1">
+    <h1>
+        <p><i>در این بخش ما فقط مخاطبانی <br><br>که برای تبلیغ 72 ساعته ثبت نام کرده اند <br><br>را قرار دادیم برای
+                اینکه شما هم <br><br>در این بخش ثبت نام بشی بیا به <a
+                    href="https://rubika.ir/joing/IJFDFDEH0KVTAMRDAABTQHUPYCCMEJIR" target="_blank">گروه
+                    روبیکا</a>یادتون باشه که فقط 4 نفر می توانند شرکت کنند <br><br>و وقتی وقت آن 4 نفر تمام شد سپس
+                کاربران دیگری جایگزین میشوند </i></p>
+    </h1>
+</div>
+</body>
 </html>
+
+
 

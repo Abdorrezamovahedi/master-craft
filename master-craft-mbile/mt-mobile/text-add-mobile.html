@@ -1,16 +1,39 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-        <link rel="stylesheet" href="text-add-mobile.css">
+    <link rel="stylesheet" href="text-add-mobile.css">
+    <script>
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.menu-toggle');
+    menu.classList.toggle('show');
+    toggle.classList.toggle('open');
+}
+</script>
 </head>
-
 <body>
-    <p>هنوز کسی در این بخش نیست</p>
-</body>
+<div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
+<div class="menu" id="menu">
+    <a class="a" href="../home-mobile/index-mobile.html">🏠 خانه</a>
+    <a class="a" href="../aparat-mobile/aparat-mobile.html">🍏 آپارات</a>
+    <a class="a" href="../films-mobile/film-site-mobile.html">🎞 فیلم سینمایی</a>
+    <a class="a" href="../master-code-mobile/master-code-mobile.html">💻 مستر کد</a>
+    <a class="a" href="mt-mobile.html">🎈محل تبلیغات</a>
+
+    <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
+   </div>
+<p>هنوز کسی در این بخش نیست</p>
+</body>
 </html>
+
+
+
 

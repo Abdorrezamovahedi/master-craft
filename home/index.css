@@ -1,6 +1,131 @@
+﻿@font-face {
+  font-family: 'M';
+  src: url('../fonts/Pk.ttf') format('truetype');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
 @font-face {
-    font-family: 'M';
-    src: url('../fonts/Pk.ttf') format('truetype');
+  font-family: 'M';
+  src: url('../fonts/en.otf') format('truetype');
+  unicode-range: U+0000-00FF;
+}
+
+
+
+        body{
+            font-family: 'M', sans-serif;
+            background-color: rgb(255, 255, 255);
+            background-color: black;
+        }
+
+        .a{
+            color: #00ff00;
+            transition: all 0.3s ease-in-out;
+            background-color: rgb(0, 24, 1);
+            font-size: 40px;
+            width: fit-content;
+            border-radius: 40px;
+            text-decoration: none;
+        }
+
+        .a:hover{
+            box-shadow: 
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36),
+            0 0 20px rgb(43, 77, 36);
+            font-size: 50px;
+            border: 2px solid rgb(0, 255, 13);
+            background-color: #003b00;
+            text-shadow:
+            -10px -10px 3px black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+
+
+        }
+
+        #texthead{
+            color: aqua;
+            text-align:center;
+            background-color: rgb(11, 22, 10);
+            border-radius: 20px;
+            max-width: 700px;
+            border: 2px solid rgb(0, 255, 21);
+            text-shadow: 0 0 10px rgb(0, 225, 255);
+            text-shadow:
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+
+        }
+
+        #menu{
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-link{
+            display: block;
+            padding: 10px 18px;
+            line-height: 1.2;
+        }
+
+        #menu .menu-link:hover{
+            font-size: 40px;
+        }
+
+        /* ===== فقط چیدمان دسکتاپ ===== */
+        .layout{
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            padding: 20px;
+        }
+        /* ============================ */
+
+        #payan{
+            background-color: #00ff00;
+            width:fit-content ;
+            text-align: center;
+            justify-content: center;  /* وسط افقی */
+            align-items: center;      /* وسط عمودی */          /* تمام ارتفاع صفحه */
+            border-radius:30px ;
+            text-align: center;       /* متن داخل div هم وسط */
+            box-shadow:
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00,
+            0 0 20px #00ff00;
+        }
+') format('truetype');
+  unicode-range: U+0000-00FF;
 }
 
 
@@ -74,7 +199,20 @@
         }
 
         #menu{
-            width:fit-content;
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-link{
+            display: block;
+            padding: 10px 18px;
+            line-height: 1.2;
+        }
+
+        #menu .menu-link:hover{
+            font-size: 40px;
         }
 
         /* ===== فقط چیدمان دسکتاپ ===== */
@@ -104,3 +242,6 @@
             0 0 20px #00ff00,
             0 0 20px #00ff00;
         }
+
+
+

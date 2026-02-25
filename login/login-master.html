@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
@@ -50,6 +50,25 @@ function toEnglishDigits(str) {
   return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 }
 
+function saveOrUpdateUser(user) {
+  let users = [];
+  try {
+    users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (!Array.isArray(users)) users = [];
+  } catch (_e) {
+    users = [];
+  }
+
+  const existingIndex = users.findIndex(u => u.phone === user.phone);
+  if (existingIndex >= 0) {
+    users[existingIndex] = { ...users[existingIndex], ...user };
+  } else {
+    users.push(user);
+  }
+
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -69,6 +88,18 @@ form.addEventListener("submit", function (e) {
     body: formData
   })
   .then(() => {
+    const userRecord = {
+      id: "u_" + Date.now(),
+      username: form.username.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      lastLogin: new Date().toISOString()
+    };
+    saveOrUpdateUser(userRecord);
+
+    localStorage.setItem("profile_name", form.username.value.trim());
+    localStorage.setItem("profile_phone", form.phone.value.trim());
+    localStorage.setItem("profile_email", form.email.value.trim());
     /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
     localStorage.setItem("isLoggedIn", "true");
     location.replace("../index.html"); // مسیر درست index
@@ -81,3 +112,6 @@ form.addEventListener("submit", function (e) {
 
 </body>
 </html>
+
+
+

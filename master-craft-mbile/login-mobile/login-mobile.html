@@ -2,19 +2,39 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود / ثبت نام</title>
-<meta name="color-scheme" content="only light">
+  <meta name="color-scheme" content="only light">
   <link rel="icon" href="../../login/e.png"/>
   <link rel="stylesheet" href="login-mobile.css">
+  <script>
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    const toggle = document.querySelector('.menu-toggle');
+    menu.classList.toggle('show');
+    toggle.classList.toggle('open');
+}
+</script>
 </head>
-
 <body>
+<div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
+<div class="menu" id="menu">
+    <a class="a" href="../home-mobile/index-mobile.html">🏠 خانه</a>
+    <a class="a" href="../aparat-mobile/aparat-mobile.html">🍏 آپارات</a>
+    <a class="a" href="../films-mobile/film-site-mobile.html">🎞 فیلم سینمایی</a>
+    <a class="a" href="../master-code-mobile/master-code-mobile.html">💻 مستر کد</a>
+    <a class="a" href="../mt-mobile/mt-mobile.html">🎈محل تبلیغات</a>
+
+    <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
+   </div>
 <script>
-/* 🔐 پاک کردن وضعیت لاگین کاربران قبلی برای مجبور کردن دوباره لاگین */
-localStorage.removeItem("isLoggedIn");  // همه کاربران باید دوباره لاگین کنند
-localStorage.setItem("resetVersion", "2"); // شماره نسخه جدید (اختیاری)
+localStorage.removeItem("isLoggedIn");
+localStorage.setItem("resetVersion", "2");
 </script>
 
 <div class="login-box">
@@ -40,9 +60,27 @@ localStorage.setItem("resetVersion", "2"); // شماره نسخه جدید (اخ
 <script>
 const form = document.getElementById("loginForm");
 
-/* تبدیل اعداد فارسی به انگلیسی */
 function toEnglishDigits(str) {
   return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+}
+
+function saveOrUpdateUser(user) {
+  let users = [];
+  try {
+    users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (!Array.isArray(users)) users = [];
+  } catch (_e) {
+    users = [];
+  }
+
+  const existingIndex = users.findIndex(u => u.phone === user.phone);
+  if (existingIndex >= 0) {
+    users[existingIndex] = { ...users[existingIndex], ...user };
+  } else {
+    users.push(user);
+  }
+
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
 form.addEventListener("submit", function (e) {
@@ -64,9 +102,20 @@ form.addEventListener("submit", function (e) {
     body: formData
   })
   .then(() => {
-    /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
+    const userRecord = {
+      id: "u_" + Date.now(),
+      username: form.username.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      lastLogin: new Date().toISOString()
+    };
+    saveOrUpdateUser(userRecord);
+
+    localStorage.setItem("profile_name", form.username.value.trim());
+    localStorage.setItem("profile_phone", form.phone.value.trim());
+    localStorage.setItem("profile_email", form.email.value.trim());
     localStorage.setItem("isLoggedIn", "true");
-    location.replace("../home-mobile/index-mobile.html"); // مسیر درست index
+    location.replace("../home-mobile/index-mobile.html");
   })
   .catch(() => {
     alert("خطا در ارسال اطلاعات");
@@ -76,3 +125,7 @@ form.addEventListener("submit", function (e) {
 
 </body>
 </html>
+
+
+
+

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <title>پنل کاربری | Master Craft</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="page-wrap">
+    <header class="topbar">
+      <a class="brand" href="../index.html">MASTER CRAFT 12</a>
+      <a class="home-link" href="../index.html">خانه</a>
+    </header>
+
+    <main class="panel">
+      <section class="avatar-card">
+        <div class="avatar-wrap">
+          <img id="avatarPreview" src="../yadack/head.png" alt="تصویر پروفایل کاربر">
+        </div>
+        <label for="avatarInput" class="btn secondary">انتخاب عکس پروفایل</label>
+        <input id="avatarInput" type="file" accept="image/*">
+        <p class="hint">عکس روی همین مرورگر ذخیره می‌شود.</p>
+      </section>
+
+      <section class="info-card">
+        <h1>پنل کاربری</h1>
+        <form id="profileForm">
+          <label for="name">نام کاربری</label>
+          <input id="name" type="text" placeholder="نام خود را وارد کنید">
+
+          <label for="phone">شماره موبایل</label>
+          <input id="phone" type="tel" placeholder="09xxxxxxxxx">
+
+          <label for="email">ایمیل</label>
+          <input id="email" type="email" placeholder="example@mail.com">
+
+          <button class="btn" type="submit">ذخیره تغییرات پروفایل</button>
+        </form>
+
+        <div class="actions">
+          <a class="btn support" target="_blank" rel="noopener noreferrer" href="https://rubika.ir/joing/JGBJBEHB0WQYOGFAXLBALAVGJEDOYVLA">تماس با پشتیبانی</a>
+          <a class="btn" href="../admin/admin.html">پنل مدیریت سایت</a>
+          <button class="btn danger" id="logoutBtn" type="button">خروج از حساب</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>
