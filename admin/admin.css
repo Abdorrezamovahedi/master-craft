@@ -3,16 +3,6 @@
   src: url('../fonts/Pk.ttf') format('truetype');
   unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
-@font-face {
-  font-family: 'M';
-  src: url('../fonts/en.otf') format('truetype');
-  unicode-range: U+0000-00FF;
-}
-@font-face {
-  font-family: 'en';
-  src: url('../fonts/en.otf') format('truetype');
-}
-
 :root {
   --bg: #050705;
   --card: #101810;
@@ -29,12 +19,6 @@ body {
   font-family: 'M', sans-serif;
   background: radial-gradient(circle at top, #0f2a18 0%, var(--bg) 60%);
   color: var(--text);
-}
-
-.en,
-:lang(en),
-code {
-  font-family: 'en', sans-serif;
 }
 
 .hidden { display: none !important; }
@@ -287,4 +271,5 @@ textarea { resize: vertical; }
     align-items: flex-start;
   }
 }
+
 

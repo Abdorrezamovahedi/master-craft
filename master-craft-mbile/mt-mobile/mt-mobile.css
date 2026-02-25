@@ -4,12 +4,6 @@
   unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 @font-face {
-  font-family: 'M';
-  src: url('../../fonts/en.otf') format('truetype');
-  unicode-range: U+0000-00FF;
-}
-
-        @font-face {
             font-family: 'e';
             src: url('../../fonts/en.otf') format('truetype');
         }
@@ -411,4 +405,5 @@ body {
     font-size: 20px !important;
     scale: 1 !important;
 }
+
 
