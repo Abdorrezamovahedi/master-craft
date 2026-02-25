@@ -1,43 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>محل تبلیغات</title>
     <style>
-            @font-face {
-        font-family: 'M';
-        src: url('../fonts/Pk.ttf') format('truetype');
-    }
+        @font-face {
+            font-family: 'M';
+            src: url('../fonts/Pk.ttf') format('truetype');
+        }
 
-    body{
-        background-color: black;
-        font-family: 'M', sans-serif;
-        text-align: center
-        ;
-    }
- .p{
-    color: aqua;
- }
+        @font-face {
+            font-family: 'e';
+            src: url('../fonts/en.otf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+
+        }
+
+        .p {
+            color: aqua;
+            font-family: 'M', sans-serif;
+        }
+
+        .a-too-p{
+            color: rgb(23, 117, 0);
+            font-family: 'M', sans-serif;
+        }
+
+        .a {
+            color: rgb(0, 255, 21);
+            transition: all 0.5s;
+            border-radius: 50px;
+            font-family: 'M', sans-serif;
+        }
+
+        .a:hover {
+            background-color: rgb(6, 53, 0);
+            border: 1px solid rgb(0, 129, 6);
+            border-radius: 50px;
+            font-size: 20px;
+            box-shadow:
+                0 0 10px rgb(0, 73, 12),
+                0 0 10px rgb(0, 73, 12),
+                0 0 10px rgb(0, 73, 12),
+              
+                
+        }
+
+        .p2 {
+
+            font-family: 'e', sans-serif;
+            font-size: x-large;
+            width: 700px;
+        }
+
+        .img-too-p2 {
+            border-radius: 50%;
+            width: 100px;
+            border: 3px solid rgb(60, 255, 0);
+        }
+
+        #span1 {
+            background-color: rgb(46, 46, 46);
+            border-radius: 5px;
+            color: rgb(0, 202, 108);
+            font-family: 'M', sans-serif;
+        }
+
+        #satr-aval-p2 {
+            background-color: rgb(59, 61, 61);
+            border-radius: 20px;
+        }
+
+        .a-too-p2 {
+            color: aqua;
+            text-decoration: none;
+        }
+
+        #span2 {
+            background-color: rgb(46, 46, 46);
+            border-radius: 5px;
+            font-family: 'M', sans-serif;
+            color: red;
+        }
     </style>
 </head>
+
 <body>
     <div class="menu" id="menu">
-    <a href="../aparat/aparat.html"><span class="a">🍏آپارات</span></a>
-    <br>
-    <a href="../films/film-site.html"><span class="a">🎞فیلم سینمایی</span></a>
-</div>
-    <div dir="ltr">
-    <p class="p">
-        سلام و درود
+        <a href="../aparat/aparat.html" class="a">🍏آپارات</a>
         <br>
-        این بخش مربوط به تبلیغ ها است برای <a class="a-too-p" id="a1-to-p" href="text-mt.html" target="_blank">...اطلاع بیشتر</a>
+        <a href="../films/film-site.html" class="a">🎞فیلم سینمایی</a>
         <br>
-       و برای ثبت تبلیغ در<a class="a-too-p" id="a2-to-p" href="https://rubika.ir/joing/IJFDFDEH0KVTAMRDAABTQHUPYCCMEJIR" target="_blank">گروه رو بیکا</a> درخواست بدید
-       <br>
+        <a href="../master-code/code-master.html" class="a">💻 مستر کد</a>
+    </div>
+    <div dir="rtl">
+        <p class="p">
+            سلام و درود
+            <br>
+            این بخش مربوط به تبلیغ ها است برای <a class="a-too-p" id="a1-to-p" href="text-mt.html"
+                target="_blank">...اطلاع بیشتر</a>
+            <br>
+            و برای ثبت تبلیغ در<a class="a-too-p" id="a2-to-p"
+                href="https://rubika.ir/joing/IJFDFDEH0KVTAMRDAABTQHUPYCCMEJIR" target="_blank">گروه رو بیکا</a> درخواست
+            بدید
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+    </div>
+    <div dir="ltr" class="p2">
+        <p class="p2" id="satr-aval-p2">
+            <a href="https://aparat.com/MASTERCRAFT12" class="a-too-p2">
+                <img class="img-too-p2" src="../yadack/head.png" alt="pro file chamels">
+                <span id="span1">📌کانال سازنده سایت</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABDORREZAMASTER CRAFT 12
+            </a>
+        </p>
 
-    </p>
-</div>
+
+        <p class="p2" id="satr-aval-p2">
+            <a href="text-add.html" class="a-too-p2">
+                <img class="img-too-p2" src="../yadack/stik.png" alt="pro file chamels">
+                <span id="span2">کسی ثبت نام نکرده</span><br>
+                <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            </a>
+        </p>
+
+        <br>
+        <br>
+
+
+
+    </div>
 </body>
+
 </html>

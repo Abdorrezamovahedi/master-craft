@@ -1,6 +1,6 @@
-@font-face {
+﻿@font-face {
     font-family: 'M';
-    src: url('../fonts/Pk.ttf') format('truetype');
+    src: url('../../fonts/Pk.ttf') format('truetype');
 }
 
 body{

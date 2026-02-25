@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>ورود / ثبت نام</title>
 <meta name="color-scheme" content="only light">
-  <link rel="icon" href="e.png"/>
+  <link rel="icon" href="../../login/e.png"/>
   <link rel="stylesheet" href="login-mobile.css">
 </head>
 
@@ -66,7 +66,7 @@ form.addEventListener("submit", function (e) {
   .then(() => {
     /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
     localStorage.setItem("isLoggedIn", "true");
-    location.replace("../index.html"); // مسیر درست index
+    location.replace("../home-mobile/index-mobile.html"); // مسیر درست index
   })
   .catch(() => {
     alert("خطا در ارسال اطلاعات");

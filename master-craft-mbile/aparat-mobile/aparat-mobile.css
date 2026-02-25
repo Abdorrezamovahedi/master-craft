@@ -1,0 +1,164 @@
+﻿@font-face {
+    font-family: 'M';
+    src: url('../../fonts/Pk.ttf') format('truetype');
+}
+
+body{
+    font-family: 'M', sans-serif;
+    background-color: rgb(78,78,78);
+    margin:0;
+    padding:20px;
+}
+
+/* لینک ها */
+.a{
+    color: #00ff00;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(0,24,1);
+    font-size: 40px;
+    width: fit-content;
+    border-radius: 40px;
+    text-decoration: none;
+}
+.a:hover{
+    box-shadow: 
+    0 0 20px rgb(43, 77, 36),
+    0 0 20px rgb(43, 77, 36),
+    0 0 20px rgb(43, 77, 36),
+    0 0 20px rgb(43, 77, 36),
+    0 0 20px rgb(43, 77, 36);
+    font-size: 50px;
+    border: 2px solid rgb(0,255,13);
+    background-color: #003b00;
+    text-shadow:
+    -10px -10px 3px black,
+    1px -1px 0 black,
+    -1px  1px 0 black,
+    1px  1px 0 black;
+}
+
+/* تیتر */
+#h1{
+    text-align: center;
+    color: #00f7ff;
+    margin: 20px 0;
+}
+
+/* تصاویر جدول */
+img{
+    width: 300px;
+    border-radius: 8px;
+}
+
+/* متن جدول */
+.p{
+    font-size: 40px;
+    text-align: center;
+    color: #00f7ff;
+    margin: 0;
+}
+
+/* ---------- مخصوص موبایل ---------- */
+@media(max-width:600px){
+    /* دکمه منوی سه خط */
+    .menu-toggle{
+        display: block;
+        width: 40px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+        margin-bottom: 15px;
+        user-select: none;
+    }
+    .menu-toggle span{
+        background: #00ff00;
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 2px;
+        position: absolute;
+        left: 0;
+        transition: 0.4s;
+    }
+    .menu-toggle span:nth-child(1){ top:0; }
+    .menu-toggle span:nth-child(2){ top:13px; }
+    .menu-toggle span:nth-child(3){ top:26px; }
+
+    /* وقتی منو باز است */
+    .menu-toggle.open span:nth-child(1){
+        transform: rotate(45deg);
+        top:13px;
+    }
+    .menu-toggle.open span:nth-child(2){
+        opacity:0;
+    }
+    .menu-toggle.open span:nth-child(3){
+        transform: rotate(-45deg);
+        top:13px;
+    }
+
+    /* منوی موبایل */
+    .menu{
+        display: none;
+        flex-direction: column;
+        background-color: rgb(0,24,1);
+        padding:10px;
+        border-radius:12px;
+        margin-bottom:15px;
+    }
+    .menu.show{
+        display: flex;
+    }
+    .menu a, .menu p{
+        display: block;
+        margin:5px 0;
+        font-size:28px;
+    }
+
+    /* جدول ویدیو کارت گونه */
+    table, tr, td {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    td {
+        text-align: center !important;
+        padding: 10px 0;
+        position: relative;
+    }
+    img {
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+    }
+    .p {
+        font-size: 28px;
+        text-align: center;
+        margin: 10px 0;
+    }
+    .a {
+        display: inline-block;
+        font-size: 28px;
+        margin-top: 5px;
+        padding: 8px 15px;
+        border-radius: 10px;
+    }
+
+    /* کارت ویدیو */
+    tr {
+        background: rgb(78,78,78);
+        border-radius: 12px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        padding: 10px;
+    }
+
+    /* خطوط زیر لینک */
+    td a::after {
+        content: "⎯⎯⎯";
+        display: block;
+        margin: 5px auto 0 auto;
+        color: #00ff00;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}

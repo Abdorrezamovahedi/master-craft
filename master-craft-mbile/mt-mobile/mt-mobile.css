@@ -1,0 +1,143 @@
+﻿@font-face {
+            font-family: 'M';
+            src: url('../../fonts/Pk.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'e';
+            src: url('../../fonts/en.otf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            background: black;
+            padding: 15px;
+        }
+
+        /* ===== دکمه سه خط ===== */
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: rgb(0, 255, 21);
+            margin: 6px 0;
+            border-radius: 5px;
+            transition: 0.4s;
+            box-shadow: 0 0 8px rgb(0, 73, 12);
+        }
+
+        /* تبدیل به ضربدر */
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== منو کشویی ===== */
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            transition: 0.5s;
+            box-shadow: -5px 0 20px rgba(0, 255, 21, 0.2);
+        }
+
+        .menu.show {
+            right: 0;
+        }
+
+        .menu a {
+            color: rgb(0, 255, 21);
+            text-decoration: none;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 50px;
+            background: #111;
+            text-align: center;
+            font-family: 'M', sans-serif;
+            transition: 0.3s;
+        }
+
+        .menu a:active {
+            background: rgb(6, 53, 0);
+            box-shadow: 0 0 15px rgb(0, 73, 12);
+        }
+
+        /* ===== متن اصلی ===== */
+        .p {
+            color: aqua;
+            font-family: 'M', sans-serif;
+            font-size: 15px;
+            line-height: 28px;
+        }
+
+        .a-too-p {
+            color: rgb(23, 255, 0);
+            text-decoration: none;
+        }
+
+        /* ===== کارت‌ها ===== */
+        .p2 {
+            font-family: 'e', sans-serif;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgb(59, 61, 61);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .img-too-p2 {
+            border-radius: 50%;
+            width: 80px;
+            border: 3px solid rgb(60, 255, 0);
+            margin-bottom: 10px;
+        }
+
+        .a-too-p2 {
+            color: aqua;
+            text-decoration: none;
+        }
+
+        #span1 {
+            background: rgb(46, 46, 46);
+            border-radius: 5px;
+            color: rgb(0, 202, 108);
+            font-family: 'M', sans-serif;
+            padding: 4px 8px;
+        }
+
+        #span2 {
+            background: rgb(46, 46, 46);
+            border-radius: 5px;
+            color: red;
+            font-family: 'M', sans-serif;
+            padding: 4px 8px;
+        }
+

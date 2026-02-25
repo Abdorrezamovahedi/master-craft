@@ -1,0 +1,16 @@
+﻿@font-face {
+            font-family: 'M';
+            src: url('../../fonts/Pk.ttf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+            font-family: 'M', sans-serif;
+        }
+
+        p {
+            color: rgb(255, 0, 0);
+            text-align: center;
+            font-size: 400%;
+        }
+
