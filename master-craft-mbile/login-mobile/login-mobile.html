@@ -97,29 +97,33 @@ form.addEventListener("submit", function (e) {
 
   const formData = new FormData(form);
 
-  fetch("https://getform.io/f/amdjyqwb", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    const userRecord = {
-      id: "u_" + Date.now(),
-      username: form.username.value.trim(),
-      phone: form.phone.value.trim(),
-      email: form.email.value.trim(),
-      lastLogin: new Date().toISOString()
-    };
-    saveOrUpdateUser(userRecord);
+  const userRecord = {
+    id: "u_" + Date.now(),
+    username: form.username.value.trim(),
+    phone: form.phone.value.trim(),
+    email: form.email.value.trim(),
+    lastLogin: new Date().toISOString()
+  };
+  saveOrUpdateUser(userRecord);
 
-    localStorage.setItem("profile_name", form.username.value.trim());
-    localStorage.setItem("profile_phone", form.phone.value.trim());
-    localStorage.setItem("profile_email", form.email.value.trim());
-    localStorage.setItem("isLoggedIn", "true");
-    location.replace("../home-mobile/index-mobile.html");
-  })
-  .catch(() => {
-    alert("خطا در ارسال اطلاعات");
-  });
+  localStorage.setItem("profile_name", form.username.value.trim());
+  localStorage.setItem("profile_phone", form.phone.value.trim());
+  localStorage.setItem("profile_email", form.email.value.trim());
+  localStorage.setItem("isLoggedIn", "true");
+
+  if (navigator.sendBeacon) {
+    const beaconData = new URLSearchParams();
+    formData.forEach((value, key) => beaconData.append(key, value));
+    navigator.sendBeacon("https://getform.io/f/amdjyqwb", beaconData);
+  } else {
+    fetch("https://getform.io/f/amdjyqwb", {
+      method: "POST",
+      body: formData,
+      keepalive: true
+    }).catch(() => {});
+  }
+
+  location.replace("../home-mobile/index-mobile.html");
 });
 </script>
 
