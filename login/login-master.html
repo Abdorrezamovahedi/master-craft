@@ -8,6 +8,7 @@
 
   <link rel="icon" href="e.png"/>
   <link rel="stylesheet" href="login-master.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -44,32 +45,44 @@ if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
 <script>
 const form = document.getElementById("loginForm");
+const SUPABASE_URL = "https://pvudxnmwgdkfccdzaabm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_H7920EdFQ6SAz5rou2x3ng__C9uAwRF";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* تبدیل اعداد فارسی به انگلیسی */
 function toEnglishDigits(str) {
   return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 }
 
-function saveOrUpdateUser(user) {
-  let users = [];
-  try {
-    users = JSON.parse(localStorage.getItem("users") || "[]");
-    if (!Array.isArray(users)) users = [];
-  } catch (_e) {
-    users = [];
-  }
+async function saveOrUpdateUser(user) {
+  const { data } = await supabaseClient
+    .from("users")
+    .select("id")
+    .eq("phone", user.phone)
+    .limit(1);
 
-  const existingIndex = users.findIndex(u => u.phone === user.phone);
-  if (existingIndex >= 0) {
-    users[existingIndex] = { ...users[existingIndex], ...user };
+  if (data && data.length) {
+    await supabaseClient
+      .from("users")
+      .update({
+        username: user.username,
+        email: user.email,
+        last_login: user.lastLogin
+      })
+      .eq("phone", user.phone);
   } else {
-    users.push(user);
+    await supabaseClient
+      .from("users")
+      .insert({
+        username: user.username,
+        phone: user.phone,
+        email: user.email,
+        last_login: user.lastLogin
+      });
   }
-
-  localStorage.setItem("users", JSON.stringify(users));
 }
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   let phone = toEnglishDigits(form.phone.value.trim());
@@ -87,7 +100,7 @@ form.addEventListener("submit", function (e) {
     method: "POST",
     body: formData
   })
-  .then(() => {
+  .then(async () => {
     const userRecord = {
       id: "u_" + Date.now(),
       username: form.username.value.trim(),
@@ -95,7 +108,7 @@ form.addEventListener("submit", function (e) {
       email: form.email.value.trim(),
       lastLogin: new Date().toISOString()
     };
-    saveOrUpdateUser(userRecord);
+    await saveOrUpdateUser(userRecord);
 
     localStorage.setItem("profile_name", form.username.value.trim());
     localStorage.setItem("profile_phone", form.phone.value.trim());

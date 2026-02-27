@@ -1,12 +1,14 @@
 ﻿(function () {
+  const SUPABASE_URL = 'https://pvudxnmwgdkfccdzaabm.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_H7920EdFQ6SAz5rou2x3ng__C9uAwRF';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
   const KEYS = {
     adminSession: 'admin_session',
     adminPass: 'admin_pass',
-    users: 'users',
     settings: 'site_settings'
   };
   const DEFAULT_ADMIN_PASS = '@zxcvbnm@';
-
   const DEFAULT_SUPPORT = 'https://rubika.ir/joing/JGBJBEHB0WQYOGFAXLBALAVGJEDOYVLA';
 
   const adminPanel = document.getElementById('adminPanel');
@@ -40,26 +42,10 @@
   const todayUsers = document.getElementById('todayUsers');
   const lastLogin = document.getElementById('lastLogin');
 
-  function getUsers() {
-    try {
-      const data = JSON.parse(localStorage.getItem(KEYS.users) || '[]');
-      return Array.isArray(data) ? data : [];
-    } catch (_e) {
-      return [];
-    }
-  }
-
-  function setUsers(users) {
-    localStorage.setItem(KEYS.users, JSON.stringify(users));
-  }
+  let usersCache = [];
 
   function getSettings() {
-    const fallback = {
-      announcement: '',
-      supportLink: DEFAULT_SUPPORT,
-      maintenanceMode: false
-    };
-
+    const fallback = { announcement: '', supportLink: DEFAULT_SUPPORT, maintenanceMode: false };
     try {
       const data = JSON.parse(localStorage.getItem(KEYS.settings) || '{}');
       return {
@@ -76,20 +62,21 @@
     localStorage.setItem(KEYS.settings, JSON.stringify(data));
   }
 
+  function ensureAdminPass() {
+    const current = localStorage.getItem(KEYS.adminPass);
+    if (!current || current === 'master1234') {
+      localStorage.setItem(KEYS.adminPass, DEFAULT_ADMIN_PASS);
+    }
+  }
+
   function renderStats() {
-    const users = getUsers();
-    totalUsers.textContent = String(users.length);
-
+    totalUsers.textContent = String(usersCache.length);
     const today = new Date().toISOString().slice(0, 10);
-    const countToday = users.filter(function (u) {
+    todayUsers.textContent = String(usersCache.filter(function (u) {
       return String(u.lastLogin || '').startsWith(today);
-    }).length;
-    todayUsers.textContent = String(countToday);
+    }).length);
 
-    const sorted = users
-      .map(function (u) { return u.lastLogin; })
-      .filter(Boolean)
-      .sort();
+    const sorted = usersCache.map(function (u) { return u.lastLogin; }).filter(Boolean).sort();
     lastLogin.textContent = sorted.length ? sorted[sorted.length - 1].replace('T', ' ').slice(0, 16) : '-';
   }
 
@@ -103,10 +90,8 @@
 
   function renderUsers() {
     const term = userSearch.value.trim().toLowerCase();
-    const users = getUsers();
-    const filtered = users.filter(function (u) {
-      const bag = [u.username, u.phone, u.email].join(' ').toLowerCase();
-      return bag.includes(term);
+    const filtered = usersCache.filter(function (u) {
+      return [u.username, u.phone, u.email].join(' ').toLowerCase().includes(term);
     });
 
     if (!filtered.length) {
@@ -117,14 +102,14 @@
 
     usersList.innerHTML = filtered.map(function (u) {
       return [
-        '<div class="user-item" data-id="' + (u.id || '') + '">',
+        '<div class="user-item" data-id="' + u.id + '">',
         '<div>',
         '<p><strong>نام:</strong> ' + (u.username || '-') + '</p>',
         '<p><strong>شماره:</strong> ' + (u.phone || '-') + '</p>',
         '<p><strong>ایمیل:</strong> ' + (u.email || '-') + '</p>',
         '<p><strong>آخرین ورود:</strong> ' + (u.lastLogin ? String(u.lastLogin).replace('T', ' ').slice(0, 16) : '-') + '</p>',
         '</div>',
-        '<button class="btn danger delete-user" data-id="' + (u.id || '') + '">حذف</button>',
+        '<button class="btn danger delete-user" data-id="' + u.id + '">حذف</button>',
         '</div>'
       ].join('');
     }).join('');
@@ -132,14 +117,26 @@
     renderStats();
   }
 
-  function ensureAdminPass() {
-    const current = localStorage.getItem(KEYS.adminPass);
-    if (!current || current === 'master1234') {
-      localStorage.setItem(KEYS.adminPass, DEFAULT_ADMIN_PASS);
+  async function loadUsers() {
+    const { data, error } = await sb.from('users').select('id, username, phone, email, last_login').order('last_login', { ascending: false });
+    if (error) {
+      usersList.innerHTML = '<p class="muted">خطا در خواندن کاربران از دیتابیس.</p>';
+      return;
     }
+
+    usersCache = (data || []).map(function (u) {
+      return {
+        id: u.id,
+        username: u.username,
+        phone: u.phone,
+        email: u.email,
+        lastLogin: u.last_login
+      };
+    });
+    renderUsers();
   }
 
-  function openPanel() {
+  async function openPanel() {
     loginOverlay.classList.add('hidden');
     adminPanel.classList.remove('hidden');
 
@@ -149,51 +146,53 @@
     maintenanceMode.checked = s.maintenanceMode;
 
     renderPreview();
-    renderUsers();
+    await loadUsers();
   }
 
   function loginAdmin() {
-    const inputPass = adminPassInput.value;
     const pass = localStorage.getItem(KEYS.adminPass) || DEFAULT_ADMIN_PASS;
-
-    if (inputPass !== pass) {
+    if (adminPassInput.value !== pass) {
       alert('رمز مدیریت اشتباه است');
       return;
     }
-
     localStorage.setItem(KEYS.adminSession, 'true');
     openPanel();
   }
 
   saveSettings.addEventListener('click', function () {
-    const settings = {
+    setSettings({
       announcement: announcement.value.trim(),
       supportLink: supportLink.value.trim() || DEFAULT_SUPPORT,
       maintenanceMode: maintenanceMode.checked
-    };
-
-    setSettings(settings);
+    });
     renderPreview();
     alert('تنظیمات ذخیره شد');
   });
 
-  usersList.addEventListener('click', function (e) {
+  usersList.addEventListener('click', async function (e) {
     const btn = e.target.closest('.delete-user');
     if (!btn) return;
-
-    const id = btn.getAttribute('data-id');
-    const users = getUsers();
-    const next = users.filter(function (u) { return String(u.id) !== String(id); });
-
     if (!confirm('این کاربر حذف شود؟')) return;
 
-    setUsers(next);
+    const id = btn.getAttribute('data-id');
+    const { error } = await sb.from('users').delete().eq('id', id);
+    if (error) {
+      alert('حذف کاربر انجام نشد');
+      return;
+    }
+
+    usersCache = usersCache.filter(function (u) { return String(u.id) !== String(id); });
     renderUsers();
   });
 
-  deleteAllUsers.addEventListener('click', function () {
+  deleteAllUsers.addEventListener('click', async function () {
     if (!confirm('همه کاربران حذف شوند؟')) return;
-    setUsers([]);
+    const { error } = await sb.from('users').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    if (error) {
+      alert('حذف همه کاربران انجام نشد');
+      return;
+    }
+    usersCache = [];
     renderUsers();
   });
 
@@ -205,12 +204,7 @@
   });
 
   exportData.addEventListener('click', function () {
-    const data = {
-      users: getUsers(),
-      settings: getSettings(),
-      exportedAt: new Date().toISOString()
-    };
-
+    const data = { users: usersCache, settings: getSettings(), exportedAt: new Date().toISOString() };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -224,10 +218,20 @@
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = async function () {
       try {
         const data = JSON.parse(String(reader.result || '{}'));
-        if (Array.isArray(data.users)) setUsers(data.users);
+        if (Array.isArray(data.users)) {
+          for (const u of data.users) {
+            await sb.from('users').upsert({
+              id: u.id,
+              username: u.username || null,
+              phone: u.phone || null,
+              email: u.email || null,
+              last_login: u.lastLogin || new Date().toISOString()
+            });
+          }
+        }
         if (data.settings && typeof data.settings === 'object') setSettings(data.settings);
 
         const s = getSettings();
@@ -235,9 +239,8 @@
         supportLink.value = s.supportLink;
         maintenanceMode.checked = s.maintenanceMode;
         renderPreview();
-        renderUsers();
-
-        alert('بازیابی با موفقیت انجام شد');
+        await loadUsers();
+        alert('بازیابی انجام شد');
       } catch (_e) {
         alert('فایل JSON معتبر نیست');
       }
@@ -245,14 +248,14 @@
     reader.readAsText(file, 'utf-8');
   });
 
-  resetAllData.addEventListener('click', function () {
+  resetAllData.addEventListener('click', async function () {
     if (!confirm('همه اطلاعات پنل مدیریت حذف شود؟')) return;
-    localStorage.removeItem(KEYS.users);
+    await sb.from('users').delete().neq('id', '00000000-0000-0000-0000-000000000000');
     localStorage.removeItem(KEYS.settings);
-    localStorage.removeItem('profile_name');
-    localStorage.removeItem('profile_phone');
-    localStorage.removeItem('profile_email');
-    localStorage.removeItem('profile_avatar');
+    ['profile_name', 'profile_phone', 'profile_email', 'profile_avatar'].forEach(function (k) {
+      localStorage.removeItem(k);
+    });
+    usersCache = [];
     renderUsers();
     renderPreview();
     alert('اطلاعات مدیریت ریست شد');
@@ -278,9 +281,7 @@
 
   userSearch.addEventListener('input', renderUsers);
   adminLoginBtn.addEventListener('click', loginAdmin);
-  adminPassInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') loginAdmin();
-  });
+  adminPassInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') loginAdmin(); });
 
   ensureAdminPass();
   if (localStorage.getItem(KEYS.adminSession) === 'true') {
