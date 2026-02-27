@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="login-mobile.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-function toggleMenu() {
-    const menu = document.getElementById('menu');
-    const toggle = document.querySelector('.menu-toggle');
-    menu.classList.toggle('show');
-    toggle.classList.toggle('open');
-}
-</script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        const toggle = document.querySelector('.menu-toggle');
+        menu.classList.toggle('show');
+        toggle.classList.toggle('open');
+    }
+  </script>
 </head>
 <body>
 <div class="menu-toggle" onclick="toggleMenu()">
@@ -30,13 +30,8 @@ function toggleMenu() {
     <a class="a" href="../films-mobile/film-site-mobile.html">🎞 فیلم سینمایی</a>
     <a class="a" href="../master-code-mobile/master-code-mobile.html">💻 مستر کد</a>
     <a class="a" href="../mt-mobile/mt-mobile.html">🎈محل تبلیغات</a>
-
     <a class="a" href="../../panel/panel.html">👤 پنل کاربری</a>
-   </div>
-<script>
-localStorage.removeItem("isLoggedIn");
-localStorage.setItem("resetVersion", "2");
-</script>
+</div>
 
 <div class="login-box">
   <h2>ورود / ثبت نام</h2>
@@ -69,14 +64,22 @@ function toEnglishDigits(str) {
 }
 
 async function saveOrUpdateUser(user) {
-  const { data } = await supabaseClient
+  // اول بررسی کن کاربر با همین شماره هست یا نه
+  const { data: existingUser, error: selectError } = await supabaseClient
     .from("users")
     .select("id")
     .eq("phone", user.phone)
     .limit(1);
 
-  if (data && data.length) {
-    await supabaseClient
+  if (selectError) {
+    console.error("Select error:", selectError);
+    alert("خطا هنگام بررسی کاربر: " + selectError.message);
+    return;
+  }
+
+  if (existingUser && existingUser.length) {
+    // آپدیت کاربر موجود
+    const { data, error } = await supabaseClient
       .from("users")
       .update({
         username: user.username,
@@ -84,8 +87,16 @@ async function saveOrUpdateUser(user) {
         last_login: user.lastLogin
       })
       .eq("phone", user.phone);
+
+    if (error) {
+      console.error("Update error:", error);
+      alert("خطا هنگام به‌روزرسانی کاربر: " + error.message);
+    } else {
+      console.log("کاربر آپدیت شد:", data);
+    }
   } else {
-    await supabaseClient
+    // ایجاد کاربر جدید
+    const { data, error } = await supabaseClient
       .from("users")
       .insert({
         username: user.username,
@@ -93,6 +104,13 @@ async function saveOrUpdateUser(user) {
         email: user.email,
         last_login: user.lastLogin
       });
+
+    if (error) {
+      console.error("Insert error:", error);
+      alert("خطا هنگام ثبت نام: " + error.message);
+    } else {
+      console.log("کاربر جدید ثبت شد:", data);
+    }
   }
 }
 
@@ -109,12 +127,12 @@ form.addEventListener("submit", async function (e) {
   form.phone.value = phone;
 
   const userRecord = {
-    id: "u_" + Date.now(),
     username: form.username.value.trim(),
     phone: form.phone.value.trim(),
     email: form.email.value.trim(),
     lastLogin: new Date().toISOString()
   };
+
   await saveOrUpdateUser(userRecord);
 
   localStorage.setItem("profile_name", form.username.value.trim());
@@ -128,7 +146,3 @@ form.addEventListener("submit", async function (e) {
 
 </body>
 </html>
-
-
-
-
