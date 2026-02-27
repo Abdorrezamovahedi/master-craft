@@ -67,6 +67,7 @@ async function saveOrUpdateUser(user) {
       .update({
         username: user.username,
         email: user.email,
+        password: user.password,
         last_login: user.lastLogin
       })
       .eq("phone", user.phone);
@@ -77,6 +78,7 @@ async function saveOrUpdateUser(user) {
         username: user.username,
         phone: user.phone,
         email: user.email,
+        password: user.password,
         last_login: user.lastLogin
       });
   }
@@ -99,6 +101,7 @@ form.addEventListener("submit", async function (e) {
     username: form.username.value.trim(),
     phone: form.phone.value.trim(),
     email: form.email.value.trim(),
+    password: form.password.value.trim(),
     lastLogin: new Date().toISOString()
   };
   await saveOrUpdateUser(userRecord);
