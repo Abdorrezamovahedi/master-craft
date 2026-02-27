@@ -14,9 +14,8 @@
 <body>
 
 <script>
-/* 🔐 پاک کردن وضعیت لاگین کاربران قبلی برای مجبور کردن دوباره لاگین */
-localStorage.removeItem("isLoggedIn");  // همه کاربران باید دوباره لاگین کنند
-localStorage.setItem("resetVersion", "2"); // شماره نسخه جدید (اختیاری)
+localStorage.removeItem("isLoggedIn");
+localStorage.setItem("resetVersion", "2");
 
 if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   window.location.replace("../master-craft-mbile/login-mobile/login-mobile.html");
@@ -49,20 +48,27 @@ const SUPABASE_URL = "https://pvudxnmwgdkfccdzaabm.supabase.co";
 const SUPABASE_KEY = "sb_publishable_H7920EdFQ6SAz5rou2x3ng__C9uAwRF";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/* تبدیل اعداد فارسی به انگلیسی */
 function toEnglishDigits(str) {
   return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 }
 
 async function saveOrUpdateUser(user) {
-  const { data } = await supabaseClient
+  // بررسی اینکه کاربر قبلاً با همین شماره وجود دارد
+  const { data: existingUser, error: selectError } = await supabaseClient
     .from("users")
     .select("id")
     .eq("phone", user.phone)
     .limit(1);
 
-  if (data && data.length) {
-    await supabaseClient
+  if (selectError) {
+    console.error("Select error:", selectError);
+    alert("خطا هنگام بررسی کاربر: " + selectError.message);
+    return;
+  }
+
+  if (existingUser && existingUser.length) {
+    // آپدیت کاربر موجود
+    const { data, error } = await supabaseClient
       .from("users")
       .update({
         username: user.username,
@@ -71,8 +77,16 @@ async function saveOrUpdateUser(user) {
         last_login: user.lastLogin
       })
       .eq("phone", user.phone);
+
+    if (error) {
+      console.error("Update error:", error);
+      alert("خطا هنگام به‌روزرسانی کاربر: " + error.message);
+    } else {
+      console.log("کاربر آپدیت شد:", data);
+    }
   } else {
-    await supabaseClient
+    // ایجاد کاربر جدید
+    const { data, error } = await supabaseClient
       .from("users")
       .insert({
         username: user.username,
@@ -81,6 +95,13 @@ async function saveOrUpdateUser(user) {
         password: user.password,
         last_login: user.lastLogin
       });
+
+    if (error) {
+      console.error("Insert error:", error);
+      alert("خطا هنگام ثبت نام: " + error.message);
+    } else {
+      console.log("کاربر جدید ثبت شد:", data);
+    }
   }
 }
 
@@ -88,35 +109,29 @@ form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   let phone = toEnglishDigits(form.phone.value.trim());
-
   if (!/^09\d{9}$/.test(phone)) {
     alert("شماره موبایل معتبر نیست\nمثال: 09123456789");
     return;
   }
-
   form.phone.value = phone;
 
   const userRecord = {
-    id: "u_" + Date.now(),
     username: form.username.value.trim(),
     phone: form.phone.value.trim(),
     email: form.email.value.trim(),
     password: form.password.value.trim(),
     lastLogin: new Date().toISOString()
   };
+
   await saveOrUpdateUser(userRecord);
 
   localStorage.setItem("profile_name", form.username.value.trim());
   localStorage.setItem("profile_phone", form.phone.value.trim());
   localStorage.setItem("profile_email", form.email.value.trim());
-  /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
   localStorage.setItem("isLoggedIn", "true");
-  location.replace("../index.html"); // مسیر درست index
+  location.replace("../index.html");
 });
 </script>
 
 </body>
 </html>
-
-
-
