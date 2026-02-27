@@ -94,32 +94,21 @@ form.addEventListener("submit", async function (e) {
 
   form.phone.value = phone;
 
-  const formData = new FormData(form);
+  const userRecord = {
+    id: "u_" + Date.now(),
+    username: form.username.value.trim(),
+    phone: form.phone.value.trim(),
+    email: form.email.value.trim(),
+    lastLogin: new Date().toISOString()
+  };
+  await saveOrUpdateUser(userRecord);
 
-  fetch("https://getform.io/f/amdjyqwb", {
-    method: "POST",
-    body: formData
-  })
-  .then(async () => {
-    const userRecord = {
-      id: "u_" + Date.now(),
-      username: form.username.value.trim(),
-      phone: form.phone.value.trim(),
-      email: form.email.value.trim(),
-      lastLogin: new Date().toISOString()
-    };
-    await saveOrUpdateUser(userRecord);
-
-    localStorage.setItem("profile_name", form.username.value.trim());
-    localStorage.setItem("profile_phone", form.phone.value.trim());
-    localStorage.setItem("profile_email", form.email.value.trim());
-    /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
-    localStorage.setItem("isLoggedIn", "true");
-    location.replace("../index.html"); // مسیر درست index
-  })
-  .catch(() => {
-    alert("خطا در ارسال اطلاعات");
-  });
+  localStorage.setItem("profile_name", form.username.value.trim());
+  localStorage.setItem("profile_phone", form.phone.value.trim());
+  localStorage.setItem("profile_email", form.email.value.trim());
+  /* ✅ بعد از لاگین موفق، ذخیره و رفتن به index */
+  localStorage.setItem("isLoggedIn", "true");
+  location.replace("../index.html"); // مسیر درست index
 });
 </script>
 
