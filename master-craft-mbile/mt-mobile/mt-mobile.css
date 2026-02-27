@@ -405,5 +405,15 @@ body {
     font-size: 20px !important;
     scale: 1 !important;
 }
+.intro-text{
+    color: #30ffcf;
+    font-family: 'M', sans-serif;
+}
+.span-ad-status{
+    color: #ff3030;
+    font-family: 'M', sans-serif;
+    background-color: #292929;
+    border-radius: 5px;
+}
 
 
